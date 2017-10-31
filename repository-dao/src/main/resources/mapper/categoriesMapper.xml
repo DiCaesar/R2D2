@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.r2d2.repository.dao.mapper.CategoriesMapper">
+    <resultMap id="CategoriesMap" type="com.r2d2.repository.dao.model.CategoriesDO">
+        <result column="categoryId"           property="categoryId"          jdbcType="VARCHAR"/>
+        <result column="categories"           property="categories"            jdbcType="VARCHAR"/>
+        <result column="categoryDesc"         property="categoryDesc"        jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="CategoriesDO_Column_List">
+        CATEGORYID,
+        CATEGORIES,
+        CATEGORYDESC
+    </sql>
+
+    <!-- 新增 -->
+    <insert id="insert" parameterType="com.r2d2.repository.dao.model.CategoriesDO">
+        /*CategoriesMapper.insert*/
+        INSERT INTO
+        T_CATEGORIES(
+        CATEGORYID,
+        CATEGORIES,
+        CATEGORYDESC
+        )
+        VALUES(
+        #{categoryId,jdbcType=VARCHAR},
+        #{categories,jdbcType=VARCHAR},
+        #{categoryDesc,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!-- 查询 -->
+    <select id="selectCategoryList" resultMap="CategoriesMap">
+        /*CategoriesMapper.selectCategoryList*/
+        SELECT
+        <include refid="CategoriesDO_Column_List"/>
+        FROM
+        T_CATEGORIES
+        WHERE 1=1
+        <if test="categoryId != null and categoryId != ''">
+            AND CATEGORYID = #{categoryId,jdbcType=VARCHAR}
+        </if>
+        <if test="categoryName != null and categoryName != ''">
+            AND CATEGORIES = #{categoryName,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+</mapper>
