@@ -3,23 +3,41 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContext.xml</param-value>
-    </context-param>
-
+    <!-- 项目中使用Spring 时，applicationContext.xml配置文件中并没有BeanFactory，要想在业务层中的class 文件中直接引用Spring容器管理的bean可通过以下方式-->
+    <!--1、在web.xml配置监听器ContextLoaderListener-->
+    <!--ContextLoaderListener的作用就是启动Web容器时，自动装配ApplicationContext的配置信息。因为它实现了ServletContextListener这个接口，在web.xml配置这个监听器，启动容器时，就会默认执行它实现的方法。
+    在ContextLoaderListener中关联了ContextLoader这个类，所以整个加载配置过程由ContextLoader来完成。
+    它的API说明
+    第一段说明ContextLoader可以由 ContextLoaderListener和ContextLoaderServlet生成。
+    如果查看ContextLoaderServlet的API，可以看到它也关联了ContextLoader这个类而且它实现了HttpServlet这个接口
+    第二段，ContextLoader创建的是 XmlWebApplicationContext这样一个类，它实现的接口是WebApplicationContext->ConfigurableWebApplicationContext->ApplicationContext->
+    BeanFactory这样一来spring中的所有bean都由这个类来创建
+     IUploaddatafileManager uploadmanager = (IUploaddatafileManager)    ContextLoaderListener.getCurrentWebApplicationContext().getBean("uploadManager");
+     -->
     <listener>
-        <listener-class>
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <!--2、部署applicationContext的xml文件-->
+    <!--如果在web.xml中不写任何参数配置信息，默认的路径是"/WEB-INF/applicationContext.xml，
+    在WEB-INF目录下创建的xml文件的名称必须是applicationContext.xml。
+    如果是要自定义文件名可以在web.xml里加入contextConfigLocation这个context参数：
+    在<param-value> </param-value>里指定相应的xml文件名，如果有多个xml文件，可以写在一起并以“,”号分隔。
+    也可以这样applicationContext-*.xml采用通配符，比如这那个目录下有applicationContext-ibatis-base.xml，
+    applicationContext-action.xml，applicationContext-ibatis-dao.xml等文件，都会一同被载入。
+    在ContextLoaderListener中关联了ContextLoader这个类，所以整个加载配置过程由ContextLoader来完成。-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/applicationContext.xml</param-value>
+    </context-param>
+
+    <!--DispatcherServlet-->
     <servlet>
         <servlet-name>springMvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring-mvc.xml</param-value>
+            <param-value>classpath:/spring/spring-mvc.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -28,5 +46,56 @@
         <servlet-name>springMvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <!-- spring session -->
+    <filter>
+        <filter-name>springSessionRepositoryFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSessionRepositoryFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- 过滤器，用户设置系统所有请求的字符编码 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>Home</welcome-file>
+    </welcome-file-list>
+    <!--指定500页面-->
+    <error-page>
+        <error-code>500</error-code>
+        <location>jsp/error/500.jsp</location>
+    </error-page>
+    <!--指定404页面-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>jsp/error/404.jsp</location>
+    </error-page>
+    <!--指定404页面-->
+    <error-page>
+        <error-code>400</error-code>
+        <location>jsp/error/400.jsp</location>
+    </error-page>
 
 </web-app>

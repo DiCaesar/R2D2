@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 
 /**
  * Created by DiCaesar on 2017/8/24
@@ -11,7 +13,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString(callSuper = true)
-public class CategoriesDO {
+public class CategoriesDO implements Serializable {
 
     private String categoryId;
 

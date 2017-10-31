@@ -14,13 +14,15 @@ import java.util.List;
 @Service
 public class CategoriesManagerImp implements CategoriesManager {
 
-    @Autowired
+    @Autowired(required = false)
     private CategoriesMapper categoriesMapper;
 
+    @Override
     public int insertNewCategories(CategoriesDO categoriesDO){
         return  categoriesMapper.insert(categoriesDO);
     }
 
+    @Override
     public List<CategoriesDO> queryCategoriesList(String CategoryId, String CategoryName){
         return categoriesMapper.selectCategoryList(CategoryId,CategoryName);
 

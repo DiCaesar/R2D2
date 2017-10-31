@@ -11,11 +11,22 @@
     <!-- 使用annotation 自动注册bean -->
     <context:component-scan base-package="com.r2d2.repository"/>
 
-    <!-- 配置文件 -->
-    <context:property-placeholder location="classpath:/jdbc.properties" ignore-unresolvable="true"/>
-
+    <!-- 配置文件-->
+    <context:property-placeholder location="classpath:/properties/res.properties" ignore-unresolvable="true"/>
+    <!--
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:/res.properties</value>
+                <value>classpath:/jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+    -->
 
     <!-- 数据源配置文件 -->
     <import resource="spring-datasources.xml"/>
+    <import resource="spring-redis.xml"/>
+
 
 </beans>

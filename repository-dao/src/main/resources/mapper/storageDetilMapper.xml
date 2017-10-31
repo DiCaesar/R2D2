@@ -24,7 +24,7 @@
     </sql>
 
     <!-- 新增 -->
-    <insert id="insert" parameterType="com.r2d2.repository.dao.model.StorageDetilDO" >
+    <insert id="insert2" parameterType="com.r2d2.repository.dao.model.StorageDetilDO" >
         /*StorageDetilMapper.insert*/
         INSERT INTO
         t_storage_detil(
