@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -28,5 +29,6 @@ public class RedisTest  extends BaseTest {
     public void insertTest(){
         String key = "1223";
         assert redisManager.insertObject("AAAAAA",key, TimeUnit.DAYS.toMillis(1));
+
     }
 }

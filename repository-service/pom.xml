@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>repository-service</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>../repository-springBoot</module>
+    </modules>
 
     <dependencies>
         <dependency>
