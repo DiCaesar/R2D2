@@ -63,6 +63,7 @@
 
     <!-- 全局异常配置 start -->
     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+       <!--
         <property name="exceptionMappings">
             <props>
                 <prop key="java.lang.Exception">jsp/error/500</prop>
@@ -76,6 +77,7 @@
                 <prop key="jsp/error/400">400</prop>
             </props>
         </property>
+        -->
 
         <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
         <property name="warnLogCategory" value="INFO"/>
@@ -92,5 +94,6 @@
         <property name="maxInMemorySize" value="20000000"/>
         <property name="uploadTempDir" value="uploadTemp"/>
     </bean>
--->
+    -->
+
 </beans>

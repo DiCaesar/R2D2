@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.springboot.sample</groupId>
-    <artifactId>spring-boot-sample</artifactId>
+    <groupId>com.r2d2.pecan</groupId>
+    <artifactId>pecan-springBoot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
-    <name>spring-boot-sample</name>
+    <name>pecan-springBoot</name>
     <description>Spring Boot Sample Web Application</description>
 
     <parent>

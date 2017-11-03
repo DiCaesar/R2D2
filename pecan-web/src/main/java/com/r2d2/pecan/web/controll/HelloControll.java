@@ -20,7 +20,7 @@ public class HelloControll {
 
     @RequestMapping("/info")
     public Map<String, String> getInfo(@RequestParam String name) {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap();
         map.put("name", name);
         return map;
     }
