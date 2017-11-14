@@ -37,7 +37,8 @@
         <fastjson.version>1.2.28</fastjson.version>
         <guava.version>15.0</guava.version>
         <javaxServlet.version>3.1.0</javaxServlet.version>
-
+        <mysql.version>5.1.29</mysql.version>
+        <quartz.version>2.2.1</quartz.version>
 
     </properties>
 
@@ -233,6 +234,12 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
             </dependency>
+            <!-- Quartz framework -->
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -246,6 +253,11 @@
                 <version>${fastjson.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
             <!--
                 <dependency>
                     <groupId>org.slf4j</groupId>

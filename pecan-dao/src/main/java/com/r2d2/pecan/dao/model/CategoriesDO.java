@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString(callSuper = true)
-public class CategoriesDO implements Serializable {
+public class CategoriesDO extends BaseDO {
 
     private String categoryId;
 

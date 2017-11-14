@@ -9,7 +9,7 @@
 
 
     <!-- 使用annotation 自动注册bean -->
-    <context:component-scan base-package="com.r2d2.repository"/>
+    <context:component-scan base-package="com.r2d2.pecan"/>
 
     <!-- 配置文件-->
     <context:property-placeholder location="classpath:/properties/res.properties" ignore-unresolvable="true"/>
@@ -27,6 +27,7 @@
     <!-- 数据源配置文件 -->
     <import resource="spring-datasources.xml"/>
     <import resource="spring-redis.xml"/>
+    <import resource="spring-quartz.xml"/>
 
 
 </beans>

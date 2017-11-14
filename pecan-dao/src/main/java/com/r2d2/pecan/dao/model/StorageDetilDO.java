@@ -1,11 +1,9 @@
 package com.r2d2.pecan.dao.model;
 
-import java.io.Serializable;
-
 /**
  * Created by DiCaesar on 2017/8/28
  */
-public class StorageDetilDO implements Serializable{
+public class StorageDetilDO extends BaseDO{
 
     private String id;
 
