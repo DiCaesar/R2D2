@@ -31,10 +31,10 @@ public class DownLoadThread implements Runnable{
         try{
             //status change
             statusChange(StatusEnum.Processing);
-            List fileList = Splitter.on(",").splitToList(group.getPicList());
+          //  List fileList = Splitter.on(",").splitToList(group.getPicList());
 
         }catch (Exception e){
-            log.error("download faile group {}-{}",group.getGroupId(),group.getGroupName());
+        //    log.error("download faile group {}-{}",group.getGroupId(),group.getGroupName());
             statusChange(StatusEnum.Failure);
         }finally {
             statusChange(StatusEnum.Success);

@@ -38,6 +38,7 @@
         <guava.version>15.0</guava.version>
         <javaxServlet.version>3.1.0</javaxServlet.version>
         <mysql.version>5.1.29</mysql.version>
+        <joda.time.version>2.7</joda.time.version>
         <quartz.version>2.2.1</quartz.version>
 
     </properties>
@@ -257,6 +258,12 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+            <!-- dozer -->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda.time.version}</version>
             </dependency>
             <!--
                 <dependency>
