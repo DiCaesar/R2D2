@@ -9,9 +9,10 @@ import java.util.List;
  */
 public interface CategoriesManager {
 
-    int insertNewCategories(CategoriesDO categoriesDO);
+    int insertCategories(CategoriesDO categoriesDO);
 
-    List<CategoriesDO> queryCategoriesList(String CategoryId,String CategoryName);
+    Integer selectCategoryCount(CategoriesDO categoriesDO);
 
-    int updateCategoriesList(CategoriesDO categoriesDO);
+    List<CategoriesDO> queryCategoriesPage(CategoriesDO categoriesDO,Integer startRow,Integer pageSize);
+
 }

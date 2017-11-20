@@ -149,7 +149,7 @@ public abstract class WorkFactory {
             }
         } finally {
             if (jobConfigDO != null) {
-               // jobConfigDO.setJobLogDO(null);
+                jobConfigDO.setJobLogDO(null);
             }
         }
     }

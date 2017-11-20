@@ -38,7 +38,7 @@ public class CategoriesDownLoadThread implements Runnable{
         try{
             //status change
             statusChange(statusEnum);
-            List<String> urlList = Splitter.on(",").splitToList(storageDetailDO.getUrlStr());
+            List<String> urlList = Splitter.on(",").splitToList(storageDetailDO.getPicList());
             Map<String,String> fileInfo = createFileInfo(urlList);
             for (Map.Entry<String,String>  entry : fileInfo.entrySet()){
                 String fileName = entry.getKey();
@@ -77,7 +77,7 @@ public class CategoriesDownLoadThread implements Runnable{
      * @param status
      */
     public  void statusChange(StatusEnum status){
-        storageDetailDO.setStatus(status.getCode());
+        storageDetailDO.setDownloadFlag(status.getCode());
         if (StatusEnum.Success.getCode().equals(status.getCode())){
             storageDetailDO.setFilePath(filePath);
         }

@@ -15,7 +15,7 @@
 
     <!-- 系统日志打印 -->
     <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>C:/logs/repository/repository.log</File>
+        <File>C:/logs/pecan/pecan.log</File>
         <encoder>
             <Pattern>
                 [%date] [%-5level] %c{40} %line --%mdc{client} [%X{TRACE_LOG_ID}] [%X{dstTraceId}] %msg%n
@@ -23,7 +23,7 @@
             <charset>UTF-8</charset>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>C:/logs/repository/repository-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>C:/logs/pecan/pecan-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>512MB</maxFileSize>

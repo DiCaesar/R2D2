@@ -19,4 +19,8 @@ public class PecanConstant {
      */
     public static final String JOB_DATA_MAP = "quartz.job.data";
 
+    /**
+     * 每页查询条数
+     */
+    public static final Integer QUERY_PAGE_COUNT = 1000;
 }

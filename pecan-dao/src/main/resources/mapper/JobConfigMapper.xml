@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.r2d2.pecan.dao.mapper.JobConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.r2d2.pecan.dao.model.JobConfigDO" >
+    <id     column="ID"                     property="id"                   jdbcType="DECIMAL" />
+    <result column="JOB_NO"                 property="jobNo"                jdbcType="VARCHAR" />
+    <result column="JOB_NAME"               property="jobName"              jdbcType="VARCHAR" />
+    <result column="JOB_GROUP"              property="jobGroup"             jdbcType="VARCHAR" />
+    <result column="JOB_CLASS"              property="jobClass"             jdbcType="VARCHAR" />
+    <result column="TRADE_DATE"             property="tradeDate"            jdbcType="TIMESTAMP"/>
+    <result column="STATUS"                 property="status"               jdbcType="VARCHAR" />
+    <result column="JOB_CRON_EXPRESS"       property="jobCronExpress"       jdbcType="VARCHAR" />
+    <result column="JOB_CRON_EXPRESS_DESC"  property="jobCronExpressDesc"   jdbcType="VARCHAR" />
+    <result column="JOB_EXEC_COUNT"         property="jobExecCount"         jdbcType="VARCHAR" />
+    <result column="RETRY_TIMES"            property="retryTimes"           jdbcType="VARCHAR" />
+    <result column="LAST_EXEC_TIME"         property="lastExecTime"         jdbcType="DATE"    />
+    <result column="NEXT_EXEC_TIME"         property="nextExecTime"         jdbcType="DATE"    />
+    <result column="JOB_USED_TIME"          property="jobUsedTime"          jdbcType="DATE"    />
+    <result column="JOB_DESC"               property="jobDesc"              jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG"            property="deleteFlag"           jdbcType="VARCHAR" />
+    <result column="CREATED_AT"             property="createdAt"            jdbcType="DATE"    />
+    <result column="CREATED_BY"             property="createdBy"            jdbcType="VARCHAR" />
+    <result column="UPDATED_AT"             property="updatedAt"            jdbcType="DATE"    />
+    <result column="UPDATED_BY"             property="updatedBy"            jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <!-- 公共返回字段 -->
+  <sql id="Base_Column_List" >
+    ID,
+    JOB_NO,
+    JOB_NAME,
+    JOB_GROUP,
+    JOB_CLASS,
+    TRADE_DATE,
+    STATUS,
+    JOB_CRON_EXPRESS,
+    JOB_CRON_EXPRESS_DESC,
+    JOB_EXEC_COUNT,
+    RETRY_TIMES,
+    LAST_EXEC_TIME,
+    NEXT_EXEC_TIME,
+    JOB_USED_TIME,
+    JOB_DESC,
+    CREATED_AT,
+    CREATED_BY,
+    UPDATED_AT,
+    UPDATED_BY,
+    DELETE_FLAG
+  </sql>
+
+  <!-- 新增任务 -->
+  <insert id="insertJobConfig" parameterType="com.r2d2.pecan.dao.model.JobConfigDO">
+    /* insertJobConfig */
+    INSERT INTO
+    T_JOB_CONFIG(
+    ID,
+    JOB_NO,
+    JOB_NAME,
+    JOB_GROUP,
+    JOB_CLASS,
+    TRADE_DATE,
+    STATUS,
+    JOB_CRON_EXPRESS,
+    JOB_CRON_EXPRESS_DESC,
+    JOB_EXEC_COUNT,
+    RETRY_TIMES,
+    JOB_DESC,
+    CREATED_AT,
+    CREATED_BY,
+    UPDATED_AT,
+    UPDATED_BY,
+    DELETE_FLAG
+    )VALUES(
+    #{id,jdbcType=VARCHAR},
+    #{jobNo,jdbcType=VARCHAR},
+    #{jobName,jdbcType=VARCHAR},
+    #{jobGroup,jdbcType=VARCHAR},
+    #{jobClass,jdbcType=VARCHAR},
+    #{tradeDate},
+    #{status},
+    #{jobCronExpress},
+    #{jobCronExpressDesc},
+    #{jobExecCount},
+    #{retryTimes},
+    #{jobDesc,jdbcType=VARCHAR},
+    SYSDATE,
+    #{createdBy,jdbcType=VARCHAR},
+    SYSDATE,
+    #{updatedBy,jdbcType=VARCHAR},
+    'USABLE'
+    )
+  </insert>
+
+  <!-- 根据条件锁定被查询JOB配置信息 -->
+  <select id="selectForUpdateBySelective" parameterType="com.r2d2.pecan.dao.model.JobConfigDO" resultMap="BaseResultMap">
+    /* JobConfigMapper.selectForUpdateBySelective */
+    SELECT
+    AC.JOB_NAME
+    FROM
+    T_JOB_CONFIG AC
+    WHERE
+    1 = 1
+    <if test="jobGroup != null">
+      AND AC.JOB_GROUP = #{jobGroup, jdbcType=DECIMAL}
+    </if>
+    <if test="jobClass != null">
+      AND AC.JOB_CLASS = #{jobClass, jdbcType=DECIMAL}
+    </if>
+    <if test="jobName != null">
+      AND AC.JOB_NAME = #{jobName, jdbcType=DECIMAL}
+    </if>
+    AND DELETE_FLAG = 'USABLE'
+    FOR UPDATE NOWAIT
+  </select>
+
+  <!-- 根据条件查询JOB配置信息 -->
+  <select id="selectBySelective" parameterType="com.r2d2.pecan.dao.model.JobConfigDO" resultMap="BaseResultMap">
+    /* JobConfigMapper.selectAllByCondition */
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    T_JOB_CONFIG AC
+    WHERE
+    1 = 1
+    <if test="jobNo != null and jobNo != ''" >
+      AND AC.JOB_NO = #{jobNo, jdbcType=DECIMAL}
+    </if>
+    <if test="jobGroup != null and jobGroup !='' ">
+      AND AC.JOB_GROUP = #{jobGroup, jdbcType=DECIMAL}
+    </if>
+    <if test="jobClass != null and jobClass !='' ">
+      AND AC.JOB_CLASS = #{jobClass, jdbcType=DECIMAL}
+    </if>
+    <if test="jobName != null  and jobName !='' ">
+      AND AC.JOB_NAME = #{jobName, jdbcType=DECIMAL}
+    </if>
+    AND   DELETE_FLAG = 'USABLE'
+  </select>
+
+  <!-- 根据条件更新JOB配置信息 -->
+  <update id="updateBySelective" parameterType="com.r2d2.pecan.dao.model.JobConfigDO">
+    /* JobConfigMapper.updateBySelective */
+    UPDATE
+    T_JOB_CONFIG AC
+    SET
+    UPDATED_AT = SYSDATE,
+    UPDATED_BY = #{updatedBy,jdbcType=VARCHAR}
+    <if test="tradeDate!=null">
+      ,TRADE_DATE = #{tradeDate,jdbcType=DATE}
+    </if>
+    <if test="retryTimes!=null">
+      ,RETRY_TIMES = #{retryTimes,jdbcType=DECIMAL}
+    </if>
+    <if test="jobCronExpress!=null">
+      ,JOB_CRON_EXPRESS = #{jobCronExpress,jdbcType=VARCHAR}
+    </if>
+    <if test="jobCronExpressDesc!=null">
+      ,JOB_CRON_EXPRESS_DESC = #{jobCronExpressDesc,jdbcType=VARCHAR}
+    </if>
+    <if test="jobExecCount!=null">
+      ,JOB_EXEC_COUNT = #{jobExecCount,jdbcType=DECIMAL}
+    </if>
+    <if test="lastExecTime!=null">
+      ,LAST_EXEC_TIME = #{lastExecTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="nextExecTime!=null">
+      ,NEXT_EXEC_TIME = #{nextExecTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="jobUsedTime!=null">
+      ,JOB_USED_TIME = #{jobUsedTime,jdbcType=DECIMAL}
+    </if>
+    <if test="jobDesc!=null">
+      ,JOB_DESC = #{jobDesc,jdbcType=VARCHAR}
+    </if>
+    <if test="jobName!=null">
+      ,JOB_NAME = #{jobName,jdbcType=VARCHAR}
+    </if>
+    <if test="jobClass!=null">
+      ,JOB_CLASS = #{jobClass,jdbcType=VARCHAR}
+    </if>
+    <if test="status!=null">
+      ,STATUS = #{status,jdbcType=VARCHAR}
+    </if>
+    <if test="deleteFlag!=null">
+      ,DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR}
+    </if>
+    WHERE
+    AC.JOB_NO = #{jobNo, jdbcType=VARCHAR}
+    AND   DELETE_FLAG = 'USABLE'
+  </update>
+
+  <!-- 根据条件查询JOB配置信息 -->
+  <select id="selectByJobNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    /* JobConfigMapper.selectByJobNo */
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    T_JOB_CONFIG
+    WHERE
+    JOB_NO = #{jobNo, jdbcType=DECIMAL}
+    AND   DELETE_FLAG = 'USABLE'
+  </select>
+
+
+  <!-- 查询数据记录数 -->
+  <select id="selectJobConfigCount" parameterType="com.r2d2.pecan.dao.model.JobConfigDO" resultType="java.lang.Integer">
+    /* JobConfigMapper.selectJobConfigCount */
+    SELECT
+    COUNT(0)
+    FROM
+    T_JOB_CONFIG
+    WHERE  1=1
+    <if test="status!=null     and status !=''">
+      AND STATUS = #{status,jdbcType=VARCHAR}
+    </if>
+    <if test="jobGroup != null and jobGroup !='' ">
+      AND JOB_GROUP = #{jobGroup, jdbcType=VARCHAR}
+    </if>
+    <if test="jobClass != null and jobClass !='' ">
+      AND JOB_CLASS = #{jobClass, jdbcType=VARCHAR}
+    </if>
+    <if test="jobName != null  and jobName !='' ">
+      AND JOB_NAME = #{jobName, jdbcType=VARCHAR}
+    </if>
+    <if test="tradeDate != null  and tradeDate !='' ">
+      AND TRADE_DATE = #{tradeDate, jdbcType=TIMESTAMP}
+    </if>
+    AND   DELETE_FLAG = 'USABLE'
+  </select>
+
+  <!-- 查询数据 -->
+  <select id="selectJobConfigPage" resultMap="BaseResultMap">
+    /* JobConfigMapper.selectJobConfigPage */
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    T_JOB_CONFIG
+    WHERE  1=1
+    <if test="bean.status!=null     and bean.status !=''">
+      AND STATUS = #{bean.status,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.jobGroup != null and bean.jobGroup !='' ">
+      AND JOB_GROUP = #{bean.jobGroup, jdbcType=VARCHAR}
+    </if>
+    <if test="bean.jobClass != null and bean.jobClass !='' ">
+      AND JOB_CLASS = #{bean.jobClass, jdbcType=VARCHAR}
+    </if>
+    <if test="bean.jobName != null  and bean.jobName !='' ">
+      AND JOB_NAME = #{bean.jobName, jdbcType=VARCHAR}
+    </if>
+    <if test="bean.tradeDate != null  and bean.tradeDate !='' ">
+      AND TRADE_DATE = #{bean.tradeDate, jdbcType=TIMESTAMP}
+    </if>
+    AND   DELETE_FLAG = 'USABLE'
+    AND LIMIT  #{startRow},#{pageSize}
+
+  </select>
+</mapper>

@@ -1,17 +1,20 @@
 package com.r2d2.pecan.dao.model;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
 import java.util.Date;
 
 /**
- * Created by DiCaesar on 2017/11/14
- */
+ * JOB配置信息
+ *
+ * */
 @Getter
 @Setter
 @ToString(callSuper = true)
-public class JobConfigDO extends BaseDO{
+public class JobConfigDO extends BaseDO {
 
     /**
      * JOB编号
@@ -47,6 +50,11 @@ public class JobConfigDO extends BaseDO{
      * 类名或者bean名
      */
     private String jobClass;
+
+    /**
+     * 交易日
+     */
+    private Date tradeDate;
 
     /**
      * Job执行次数

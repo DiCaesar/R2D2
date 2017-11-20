@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.r2d2.pecan.dao.mapper.CategoriesMapper">
+  <resultMap id="BaseResultMap" type="com.r2d2.pecan.dao.model.CategoriesDO">
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="category_desc" jdbcType="VARCHAR" property="categoryDesc" />
+    <result column="usable_flag" jdbcType="VARCHAR" property="usableFlag" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.r2d2.pecan.dao.model.CategoriesDO">
+    insert into t_categories (category_id, category_name, category_desc, 
+      usable_flag)
+    values (#{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{categoryDesc,jdbcType=VARCHAR}, 
+      #{usableFlag,jdbcType=VARCHAR})
+  </insert>
+
+    <!-- 新增 -->
+    <insert id="insertCategories" parameterType="com.r2d2.pecan.dao.model.CategoriesDO">
+        /*CategoriesMapper.insertCategories*/
+        INSERT INTO
+        T_CATEGORIES(
+        category_id,
+        category_name,
+        category_desc,
+        usable_flag
+        )
+        VALUES(
+        #{categoryId,jdbcType=VARCHAR},
+        #{categoryName,jdbcType=VARCHAR},
+        #{categoryDesc,jdbcType=VARCHAR},
+        #{usableFlag,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!-- 查询总数 -->
+    <select id="selectCategoryCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM
+        T_CATEGORIES
+        WHERE usable_flag = 'USABLE'
+        <if test="categoriesDO.categoryId != null and categoriesDO.categoryId != ''">
+            AND category_id = #{categoriesDO.categoryId,jdbcType=VARCHAR}
+        </if>
+        <if test="categoriesDO.categoryName != null and categoriesDO.categoryName != ''">
+            category_name = #{categoriesDO.categoryName}
+        </if>
+    </select>
+
+
+    <!-- 分页查询 -->
+    <select id="selectCategoryPage" resultMap="BaseResultMap">
+        /*CategoriesMapper.selectCategoryPage*/
+        SELECT
+        category_id,
+        category_name,
+        category_desc,
+        usable_flag
+        FROM
+        T_CATEGORIES
+        WHERE usable_flag = 'USABLE'
+        <if test="categoriesDO.categoryId != null and categoriesDO.categoryId != ''">
+            AND category_id = #{categoriesDO.categoryId,jdbcType=VARCHAR}
+        </if>
+        <if test="categoriesDO.categoryName != null and categoriesDO.categoryName != ''">
+            category_name = #{categoriesDO.categoryName}
+        </if>
+        ORDER BY category_id
+         LIMIT #{startRow} , #{pageSize}
+    </select>
+
+
+</mapper>

@@ -16,6 +16,9 @@ public interface StorageDetailManager {
 
     int deleteStorage(String id);
 
+    Integer queryStorageCount(StorageDetailDO storageDetailDO);
+
+
     List<StorageDetailDO> queryStoragePage(StorageDetailDO storageDetailDO, int startRow, int endRow);
 
 }

@@ -4,32 +4,32 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * Created by DiCaesar on 2017/8/28
  */
 @Getter
 @Setter
 @ToString
-public class StorageDetailDO extends BaseDO{
+public class StorageDetailDO implements Serializable {
+    private Integer id;
 
-    private String id;
-
-    private String categoryId;
+    private Integer categoryId;
 
     private String groupName;
 
-    private String storageUrl;
+    private String groupDesc;
+
+    private String groupUrl;
+
+    private String tags;
+
+    private String picList;
 
     private String filePath;
 
-    private String fileName;
+    private String downloadFlag;
 
-    private String status;
-
-    private String urlStr;
-
-    //备注
-    private String remark;
-
-
+    private String usableFlag;
 }

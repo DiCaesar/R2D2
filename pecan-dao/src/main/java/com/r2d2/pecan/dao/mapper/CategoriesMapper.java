@@ -10,8 +10,11 @@ import java.util.List;
  */
 public interface CategoriesMapper {
 
-    int insert(CategoriesDO categoriesDO);
+    Integer insertCategories(CategoriesDO categoriesDO);
 
-    List<CategoriesDO> selectCategoryList(@Param("categoryId") String categoryId,
-                                          @Param("categoryName") String categoryName);
+    Integer selectCategoryCount(@Param("categoriesDO") CategoriesDO categoriesDO);
+
+    List<CategoriesDO> selectCategoryPage(@Param("categoriesDO") CategoriesDO categoriesDO,
+                                          @Param("startRow") Integer startRow,
+                                          @Param("pageSize") Integer pageSize);
 }

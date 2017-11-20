@@ -34,6 +34,11 @@ public class StorageDetailManagerImpl implements StorageDetailManager {
     }
 
     @Override
+    public Integer queryStorageCount(StorageDetailDO storageDetailDO) {
+        return storageDetailMapper.queryStorageCount(storageDetailDO);
+    }
+
+    @Override
     public List<StorageDetailDO> queryStoragePage(StorageDetailDO storageDetailDO, int startRow, int endRow) {
         return storageDetailMapper.queryStoragePage(storageDetailDO,startRow,endRow);
     }

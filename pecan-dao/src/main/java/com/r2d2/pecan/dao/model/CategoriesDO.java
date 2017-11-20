@@ -13,11 +13,12 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString(callSuper = true)
-public class CategoriesDO extends BaseDO {
+public class CategoriesDO implements Serializable{
+    private Integer categoryId;
 
-    private String categoryId;
-
-    private String categories;
+    private String categoryName;
 
     private String categoryDesc;
+
+    private String usableFlag;
 }

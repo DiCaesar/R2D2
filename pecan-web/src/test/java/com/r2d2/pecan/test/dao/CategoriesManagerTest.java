@@ -1,7 +1,9 @@
 package com.r2d2.pecan.test.dao;
 
 import com.r2d2.pecan.dao.manager.CategoriesManager;
+import com.r2d2.pecan.dao.manager.StorageDetailManager;
 import com.r2d2.pecan.dao.model.CategoriesDO;
+import com.r2d2.pecan.dao.model.StorageDetailDO;
 import com.r2d2.pecan.test.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +20,34 @@ public class CategoriesManagerTest extends BaseTest{
     @Autowired
     CategoriesManager categoriesManager;
 
+    @Autowired
+    StorageDetailManager storageDetailManager;
+
     @Test
     public void insertTest(){
         CategoriesDO categoriesDO = new CategoriesDO();
-        categoriesDO.setCategoryId("3");
-        categoriesDO.setCategories("aaa");
+        categoriesDO.setCategoryId(3);
+        categoriesDO.setCategoryName("aaa");
         categoriesDO.setCategoryDesc("dddd");
-        categoriesManager.insertNewCategories(categoriesDO);
+        categoriesManager.insertCategories(categoriesDO);
     }
 
     @Test
-    public void queryTest(){
-        List<CategoriesDO> list = categoriesManager.queryCategoriesList(null,null);
-        log.info("CategoriesDOs========{}",list);
+    public void queryTest1(){
+        CategoriesDO categoriesDO = new CategoriesDO();
+
+        Integer count = categoriesManager.selectCategoryCount(categoriesDO);
+        List<CategoriesDO> list = categoriesManager.queryCategoriesPage(categoriesDO,0,10);
+        log.info("CategoriesDOs========{},{}",count,list);
+    }
+
+    @Test
+    public void queryTest2(){
+        StorageDetailDO storageDetailDO = new StorageDetailDO();
+
+        Integer count = storageDetailManager.queryStorageCount(storageDetailDO);
+        List<StorageDetailDO> list = storageDetailManager.queryStoragePage(storageDetailDO,0,10);
+        log.info("CategoriesDOs========{},{}",count,list);
     }
 
 }
