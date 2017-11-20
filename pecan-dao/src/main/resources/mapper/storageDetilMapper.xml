@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.r2d2.pecan.dao.mapper.CategoriesMapper">
-    <resultMap id="StorageDetailMap" type="com.r2d2.pecan.dao.model.StorageDetilDO">
+    <resultMap id="StorageDetailMap" type="com.r2d2.pecan.dao.model.StorageDetailDO">
         <result column="id"                 property="id"               jdbcType="VARCHAR"/>
         <result column="categoryId"         property="categoryId"       jdbcType="VARCHAR"/>
         <result column="groupName"          property="groupName"        jdbcType="VARCHAR"/>
@@ -24,7 +24,7 @@
     </sql>
 
     <!-- 新增 -->
-    <insert id="insert2" parameterType="com.r2d2.pecan.dao.model.StorageDetilDO" >
+    <insert id="insert2" parameterType="com.r2d2.pecan.dao.model.StorageDetailDO" >
         /*StorageDetilMapper.insert*/
         INSERT INTO
         t_storage_detil(
@@ -50,7 +50,7 @@
     </insert>
 
     <!-- 查询 -->
-    <select id="query" parameterType="com.r2d2.pecan.dao.model.StorageDetilDO" resultMap="StorageDetailMap">
+    <select id="query" parameterType="com.r2d2.pecan.dao.model.StorageDetailDO" resultMap="StorageDetailMap">
         /*StorageDetilMapper.query*/
         SELECT
         <include refid="StorageDetilDO_Column_List"/>

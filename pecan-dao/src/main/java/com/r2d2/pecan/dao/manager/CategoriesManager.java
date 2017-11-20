@@ -12,4 +12,6 @@ public interface CategoriesManager {
     int insertNewCategories(CategoriesDO categoriesDO);
 
     List<CategoriesDO> queryCategoriesList(String CategoryId,String CategoryName);
+
+    int updateCategoriesList(CategoriesDO categoriesDO);
 }

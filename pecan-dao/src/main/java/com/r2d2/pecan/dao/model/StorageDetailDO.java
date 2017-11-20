@@ -1,9 +1,16 @@
 package com.r2d2.pecan.dao.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 /**
  * Created by DiCaesar on 2017/8/28
  */
-public class StorageDetilDO extends BaseDO{
+@Getter
+@Setter
+@ToString
+public class StorageDetailDO extends BaseDO{
 
     private String id;
 
@@ -18,6 +25,8 @@ public class StorageDetilDO extends BaseDO{
     private String fileName;
 
     private String status;
+
+    private String urlStr;
 
     //备注
     private String remark;

@@ -22,16 +22,18 @@ public class FileUtil {
 
         //文件保存位置
         File saveDir = new File(filePath);
-        if(!saveDir.exists()){
-            saveDir.mkdir();
+
+        synchronized (FileUtil.class){
+            if(!saveDir.exists()){
+                saveDir.mkdir();
+            }
         }
+
         File file = new File(saveDir+ File.separator+fileName);
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(getData);
+        fos.close();
 
-        if(fos!=null){
-            fos.close();
-        }
         if(inputStream!=null){
             inputStream.close();
         }

@@ -4,14 +4,14 @@ import com.r2d2.pecan.dao.manager.CategoriesManager;
 import com.r2d2.pecan.dao.mapper.CategoriesMapper;
 import com.r2d2.pecan.dao.model.CategoriesDO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by DiCaesar on 2017/8/24
  */
-@Service
+@Repository
 public class CategoriesManagerImp implements CategoriesManager {
 
     @Autowired(required = false)
@@ -26,5 +26,10 @@ public class CategoriesManagerImp implements CategoriesManager {
     public List<CategoriesDO> queryCategoriesList(String CategoryId, String CategoryName){
         return categoriesMapper.selectCategoryList(CategoryId,CategoryName);
 
+    }
+
+    @Override
+    public int updateCategoriesList(CategoriesDO categoriesDO) {
+        return 0;
     }
 }
