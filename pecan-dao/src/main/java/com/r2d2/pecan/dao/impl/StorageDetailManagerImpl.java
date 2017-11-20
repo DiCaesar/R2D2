@@ -1,4 +1,4 @@
-package com.r2d2.pecan.dao.imp;
+package com.r2d2.pecan.dao.impl;
 
 import com.r2d2.pecan.dao.manager.StorageDetailManager;
 import com.r2d2.pecan.dao.mapper.StorageDetailMapper;
@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Slf4j
 @Repository
-public class StorageDetailManagerImp implements StorageDetailManager {
+public class StorageDetailManagerImpl implements StorageDetailManager {
 
     @Autowired(required = false)
     StorageDetailMapper storageDetailMapper;

@@ -1,4 +1,4 @@
-package com.r2d2.pecan.service.job;
+package com.r2d2.pecan.service.quartz;
 
 import org.quartz.spi.TriggerFiredBundle;
 import org.springframework.beans.factory.annotation.Autowired;

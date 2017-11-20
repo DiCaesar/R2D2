@@ -5,7 +5,7 @@ import com.r2d2.pecan.common.enums.DeleteFlagEnum;
 import com.r2d2.pecan.common.enums.JobConfigStatusEnum;
 import com.r2d2.pecan.dao.model.JobConfigDO;
 import com.r2d2.pecan.dao.model.JobLogDO;
-import com.r2d2.pecan.service.job.JobInit;
+import com.r2d2.pecan.service.quartz.JobInit;
 import com.r2d2.pecan.test.BaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

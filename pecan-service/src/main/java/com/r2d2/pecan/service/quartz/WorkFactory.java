@@ -1,7 +1,6 @@
-package com.r2d2.pecan.service.job;
+package com.r2d2.pecan.service.quartz;
 
 
-import com.r2d2.pecan.common.constant.GlobalRedisKey;
 import com.r2d2.pecan.common.constant.PecanConstant;
 import com.r2d2.pecan.common.enums.JobLogStatusEnum;
 import com.r2d2.pecan.common.exception.CommonErrorCode;
@@ -14,7 +13,6 @@ import com.r2d2.pecan.dao.manager.JobLogManager;
 import com.r2d2.pecan.dao.model.JobConfigDO;
 import com.r2d2.pecan.dao.model.JobLogDO;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.springframework.beans.factory.annotation.Autowired;

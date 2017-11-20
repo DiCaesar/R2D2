@@ -1,4 +1,4 @@
-package com.r2d2.pecan.service.job;
+package com.r2d2.pecan.service.quartz;
 
 import com.r2d2.pecan.dao.model.JobConfigDO;
 

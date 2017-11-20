@@ -1,7 +1,7 @@
-package com.r2d2.pecan.service.job.impl;
+package com.r2d2.pecan.service.quartz.job;
 
 import com.r2d2.pecan.dao.model.JobConfigDO;
-import com.r2d2.pecan.service.job.JobWorker;
+import com.r2d2.pecan.service.quartz.JobWorker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

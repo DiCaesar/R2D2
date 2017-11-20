@@ -1,4 +1,4 @@
-package com.r2d2.pecan.service.job;
+package com.r2d2.pecan.service.quartz;
 
 import com.r2d2.pecan.dao.model.JobConfigDO;
 import lombok.extern.slf4j.Slf4j;
@@ -6,7 +6,6 @@ import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.slf4j.MDC;
 
 /**
  * JOB任务执行有状态处理基类
