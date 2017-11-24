@@ -1,0 +1,15 @@
+1、select substring_index (substring_index(group_name,'#',1),'/',-1) 
+from t_category_group_details WHERE group_name like 'http%';
+
+2、update t_category_group_details
+set group_name = substring_index(substring_index(group_name,'#',1),'/',-1)
+WHERE group_name like 'http%';
+
+ ? * : " < > \ / |
+ 
+3、update t_category_group_details set group_name = REPLACE(group_name,'?','_') WHERE group_name like '%?%'
+update t_category_group_details set group_name = REPLACE(group_name,'*','_') WHERE group_name like '%*%'
+update t_category_group_details set group_name = REPLACE(group_name,'*','_') WHERE group_name like '%*%'
+update t_category_group_details set group_name = REPLACE(group_name,'/','_') WHERE group_name like '%/%'
+update t_category_group_details set group_name = REPLACE(group_name,'|','_') WHERE group_name like '%|%'
+

@@ -30,6 +30,7 @@
    usable_flag
   </sql>
 
+    <!-- 新增-->
   <insert id="insertStorage" parameterType="com.r2d2.pecan.dao.model.StorageDetailDO" >
     insert into t_category_group_details (id, category_id, group_name, 
       group_desc, group_url, tags, 
@@ -41,7 +42,7 @@
       #{usableFlag,jdbcType=VARCHAR})
   </insert>
 
-  <!-- 查询总数 -->
+    <!-- 查询总数 -->
     <select id="queryStorageCount"  resultType="java.lang.Integer">
         /*queryStorageCount*/
         SELECT count(1)
@@ -49,7 +50,7 @@
         t_category_group_details
         WHERE usable_flag = 'USABLE'
         <if test="storageDetailDO.categoryId != null and storageDetailDO.categoryId != ''">
-            AND CATEGORYID = #{storageDetailDO.categoryId,jdbcType=VARCHAR}
+            AND category_id = #{storageDetailDO.categoryId,jdbcType=VARCHAR}
         </if>
     </select>
 
@@ -63,10 +64,30 @@
     t_category_group_details
     WHERE usable_flag = 'USABLE'
     <if test="storageDetailDO.categoryId != null and storageDetailDO.categoryId != ''">
-      AND CATEGORYID = #{storageDetailDO.categoryId,jdbcType=VARCHAR}
+      AND category_id = #{storageDetailDO.categoryId,jdbcType=VARCHAR}
     </if>
+      <if test="storageDetailDO.downloadFlag != null and storageDetailDO.downloadFlag != ''">
+          AND download_flag = #{storageDetailDO.downloadFlag,jdbcType=VARCHAR}
+      </if>
     ORDER BY id
     LIMIT #{startRow} , #{pageSize}
   </select>
 
+    <!-- 更新 -->
+    <update id="updateStorage" parameterType="com.r2d2.pecan.dao.model.StorageDetailDO">
+        UPDATE
+        t_category_group_details
+        SET
+        <if test="storageDetailDO.groupName != null and storageDetailDO.groupName != ''">
+            group_name = #{storageDetailDO.groupName,jdbcType=VARCHAR},
+        </if>
+        <if test="storageDetailDO.filePath != null and storageDetailDO.filePath != ''">
+            file_path = #{storageDetailDO.filePath,jdbcType=VARCHAR},
+        </if>
+        <if test="storageDetailDO.downloadFlag != null and storageDetailDO.downloadFlag != ''">
+            download_flag = #{storageDetailDO.downloadFlag,jdbcType=VARCHAR}
+        </if>
+
+        WHERE  category_id = #{storageDetailDO.categoryId,jdbcType=VARCHAR}
+    </update>
 </mapper>

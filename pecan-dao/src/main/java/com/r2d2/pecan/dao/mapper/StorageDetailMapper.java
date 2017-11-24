@@ -12,7 +12,7 @@ public interface StorageDetailMapper {
 
     int insertStorage(StorageDetailDO storageDetailDO);
 
-    int updateStorage(StorageDetailDO storageDetailDO);
+    int updateStorage(@Param("storageDetailDO")StorageDetailDO storageDetailDO);
 
     int deleteStorage(String id);
 

@@ -1,5 +1,8 @@
 package com.r2d2.pecan.common.utils;
 
+import com.r2d2.pecan.common.exception.CommonErrorCode;
+import com.r2d2.pecan.common.exception.ServiceException;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -22,13 +25,6 @@ public class FileUtil {
 
         //文件保存位置
         File saveDir = new File(filePath);
-
-        synchronized (FileUtil.class){
-            if(!saveDir.exists()){
-                saveDir.mkdir();
-            }
-        }
-
         File file = new File(saveDir+ File.separator+fileName);
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(getData);
@@ -72,5 +68,14 @@ public class FileUtil {
         in.close();
     }
 
+    public static void createPathIfNotExists(String path){
+        File dir = new File(path);
+        if(!dir.exists()){
+            boolean flag = dir.mkdirs();
+            if (!flag){
+                throw new ServiceException(CommonErrorCode.FILE_PATH_CREATE_FAIL,"路径 "+path);
+            }
+        }
+    }
 
 }

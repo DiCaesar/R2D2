@@ -46,10 +46,9 @@ public enum CommonErrorCode implements ErrorCode {
 
     JOB_DATA_MAP_IS_NULL("JOB_DATA_MAP_IS_NULL", "JOB数据MAP为空"),
 
-
     JOB_CONFIG_NOT_EXISTS("JOB_CONFIG_NOT_EXISTS", "JOB配置信息不存在"),
 
-
+    FILE_PATH_CREATE_FAIL("FILE_PATH_CREATE_FAIL","文件夹创建失败"),
     ;
 
 

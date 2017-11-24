@@ -47,4 +47,10 @@ public class ServiceException extends BaseException {
         this(errorCode, extraMsg, null);
     }
 
+
+    public ServiceException(String extraMsg) {
+        this(CommonErrorCode.SYSTEM_INNER_ERROR, extraMsg, null);
+    }
+
+
 }

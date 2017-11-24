@@ -46,10 +46,11 @@ public class CategoriesDownLoadThread implements Runnable{
                 FileUtil.urlFileDownload(fileName,filePath,url);
             }
             statusEnum = StatusEnum.Success;
+            log.info("downLoad success cate:{},group:{}",storageDetailDO.getCategoryId(),storageDetailDO.getGroupName());
         }catch (Exception e){
-            log.error("download faile group {}-{}",storageDetailDO.getId(),storageDetailDO.getGroupName());
+            e.printStackTrace();
+            log.error("download fail id:{},group:{}",storageDetailDO.getId(),storageDetailDO.getGroupName());
             statusEnum = StatusEnum.Failure;
-
         }finally {
             statusChange(statusEnum);
         }

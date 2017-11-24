@@ -19,6 +19,6 @@ public interface StorageDetailManager {
     Integer queryStorageCount(StorageDetailDO storageDetailDO);
 
 
-    List<StorageDetailDO> queryStoragePage(StorageDetailDO storageDetailDO, int startRow, int endRow);
+    List<StorageDetailDO> queryStoragePage(StorageDetailDO storageDetailDO, int startRow, int pageSize);
 
 }

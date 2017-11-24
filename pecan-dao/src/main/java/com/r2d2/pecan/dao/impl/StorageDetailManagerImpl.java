@@ -39,7 +39,7 @@ public class StorageDetailManagerImpl implements StorageDetailManager {
     }
 
     @Override
-    public List<StorageDetailDO> queryStoragePage(StorageDetailDO storageDetailDO, int startRow, int endRow) {
-        return storageDetailMapper.queryStoragePage(storageDetailDO,startRow,endRow);
+    public List<StorageDetailDO> queryStoragePage(StorageDetailDO storageDetailDO, int startRow, int pageSize) {
+        return storageDetailMapper.queryStoragePage(storageDetailDO,startRow,pageSize);
     }
 }

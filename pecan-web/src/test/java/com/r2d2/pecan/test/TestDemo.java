@@ -20,6 +20,5 @@ public class TestDemo extends BaseTest {
 
     public static void main(String[] args){
         String str = StringUtils.substringAfterLast("adads/ada/dasd/123.sd","/");
-        System.out.println(str);
     }
 }
