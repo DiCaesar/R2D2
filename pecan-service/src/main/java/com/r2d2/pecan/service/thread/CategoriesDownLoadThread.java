@@ -38,12 +38,18 @@ public class CategoriesDownLoadThread implements Runnable{
         try{
             //status change
             statusChange(statusEnum);
-            List<String> urlList = Splitter.on(",").splitToList(storageDetailDO.getPicList());
+            String urlStr = storageDetailDO.getPicList();
+            List<String> urlList = Splitter.on(",").splitToList(urlStr.substring(1,urlStr.length()-1));
             Map<String,String> fileInfo = createFileInfo(urlList);
             for (Map.Entry<String,String>  entry : fileInfo.entrySet()){
                 String fileName = entry.getKey();
                 String url = entry.getValue();
-                FileUtil.urlFileDownload(fileName,filePath,url);
+                try {
+                    FileUtil.urlFileDownload(fileName,filePath,url);
+                }catch (Exception e){
+
+                    log.error("url fail :{}==={}==={}",url,e.getCause(),e.getMessage());
+                }
             }
             statusEnum = StatusEnum.Success;
             log.info("downLoad success cate:{},group:{}",storageDetailDO.getCategoryId(),storageDetailDO.getGroupName());

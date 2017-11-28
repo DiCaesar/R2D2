@@ -88,6 +88,6 @@
             download_flag = #{storageDetailDO.downloadFlag,jdbcType=VARCHAR}
         </if>
 
-        WHERE  category_id = #{storageDetailDO.categoryId,jdbcType=VARCHAR}
+        WHERE  id = #{storageDetailDO.id,jdbcType=VARCHAR}
     </update>
 </mapper>

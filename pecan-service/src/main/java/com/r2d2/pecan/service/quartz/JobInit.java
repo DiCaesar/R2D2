@@ -29,12 +29,16 @@ public class JobInit {
     @Autowired
     private QuartzJobBiz quartzManager;
 
+    private String runAllow = "FALSE";
 
     /**
      * 1、初始化定时任务状态
      */
     public void init() {
 
+        if (!runAllow.equals("true")){
+            return;
+        }
         log.info("系统启动初始化定时任务!");
         try {
             List<JobConfigDO> jobConfigBOList = jobConfigManager.queryJobConfig(new JobConfigDO());

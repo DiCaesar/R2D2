@@ -35,17 +35,23 @@ public class StorageDownloadBiz {
     private String basePath = "E:/storageDown/";
 
     public void doBiz(){
-        int cateStartInx = 0;
+        int cateStartInx = 6;
         ExecutorService threadPool = Executors.newFixedThreadPool(20);
         Map<String,List<StorageDetailDO>> detailMap = getDetailMap(getCateMap(cateStartInx));
         for(Map.Entry<String,List<StorageDetailDO>> entry : detailMap.entrySet()){
             String cateName = entry.getKey();
             log.info("类型 {}",cateName);
             List<StorageDetailDO> detailList = entry.getValue();
+            Integer dirInx =1;
+            int count=0;
             for (StorageDetailDO detailDO : detailList) {
-                String filePath = basePath+cateName+"/"+detailDO.getGroupName();
+                if(count > 0 && (count%10 == 0)) {
+                    dirInx++;
+                }
+                String filePath = basePath+cateName+"/"+dirInx.toString();
                 FileUtil.createPathIfNotExists(filePath);
                 threadPool.submit(new CategoriesDownLoadThread(filePath,detailDO,storageDetailManager));
+                count++;
             }
         }
     }
