@@ -1,3 +1,3 @@
-# R2D2
+# pecan
 
 init
